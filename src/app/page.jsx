@@ -3,13 +3,14 @@
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-
+import { setCookie } from 'cookies-next';
 const Login = () => {
 
   const router = useRouter();
 
   const submitHandler = async (data) => {
     console.log(data);
+    setCookie("email", data.email);
     const resdata = await signIn("credentials", {
       email: data.email,
       password: data.password,
